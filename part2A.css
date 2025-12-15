@@ -1,0 +1,129 @@
+:root{
+	--gutter: 12px;
+	--accent: #c0392b;
+	--max-width: 1200px;
+}
+
+html, body{
+	margin: 0;
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	color: #222;
+	background: #fafafa;
+}
+
+*{ box-sizing: border-box; }
+
+/* clearfix for float layouts */
+.page::after,
+.right-frame::after{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+/* Column system (float-based) */
+[class*="col-"]{ float: left; }
+
+.col-1{ width: 8.333333%; }
+.col-3{ width: 25%; }
+.col-4{ width: 33.333333%; }
+.col-8{ width: 66.666667%; }
+.col-11{ width: 91.666667%; }
+.col-12{ width: 100%; }
+
+.page{
+	max-width: var(--max-width);
+	margin: 0 auto;
+	padding: 10px;
+}
+
+/* Make main two columns equal height using table layout (keeps internal float grid) */
+@media (min-width: 751px) {
+	.page{
+		display: table;
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	.page > .col-1.left,
+	.page > .col-11.right-frame{
+		display: table-cell;
+		float: none;
+		vertical-align: top;
+	}
+}
+
+.left{
+	border: 2px solid var(--accent);
+	min-height: 160px;
+}
+
+.right-frame{
+	border: 2px solid var(--accent);
+	padding: 10px;
+}
+
+.cell{ padding: calc(var(--gutter) / 1.5); }
+.cell2{ padding: calc(var(--gutter) / 2); }
+
+.box{
+	width: 100%;
+	border: 2px solid var(--accent);
+	background: #fff;
+	display: block;
+}
+
+/* height helpers */
+.h-top{ height: 70px; }
+.h-small{ height: 35px; }
+.h-midBig{ height: 90px; }
+.h-bottom{ height: 70px; }
+
+.clear{ clear: both; }
+
+@media (max-width: 750px){
+	.page{
+		display: block;
+		padding: 6px;
+	}
+
+	.page > .col-1.left,
+	.page > .col-11.right-frame{
+		display: block;
+		float: none;
+		width: 100%;
+		margin: 0 0 10px 0;
+	}
+
+	.right-frame{
+		padding: 6px;
+	}
+
+	.right-frame .col-3,
+	.right-frame .col-4,
+	.right-frame .col-8,
+	.right-frame .col-12{
+		width: 100%;
+		height: auto;
+	}
+
+	.right-frame .h-top,
+	.right-frame .h-small,
+	.right-frame .h-midBig,
+	.right-frame .h-bottom{
+		height: 70px;
+	}
+
+	.cell{ padding: 8px 0; }
+	.cell2{ padding: 6px 0; }
+
+}
+
+/* Reinforce desktop layout for wider viewports (safeguard against emulation/zoom issues) */
+@media (min-width: 751px){
+	.page{ display: table; table-layout: fixed; }
+	.page > .col-1.left,
+	.page > .col-11.right-frame{ display: table-cell; float: none; vertical-align: top; }
+	[class*="col-"]{ float: left; }
+}
+

@@ -1,0 +1,113 @@
+/* Reset margins and box-sizing */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+* { box-sizing: border-box; }
+
+/* Page layout: left column + right frame */
+.page{
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
+  height: 320px;
+  padding: 10px;
+}
+
+/* Columns: exact same class names, using flex-basis to preserve widths */
+.col-1{ flex: 0 0 8.33%; max-width: 8.33%; }
+.col-3{ flex: 0 0 25%;   max-width: 25%; }
+.col-4{ flex: 0 0 33.33%; max-width: 33.33%; }
+.col-8{ flex: 0 0 66.66%; max-width: 66.66%; }
+.col-11{ flex: 0 0 91.66%; max-width: 91.66%; }
+.col-12{ flex: 0 0 100%;  max-width: 100%; }
+
+/* Left column and right frame visuals */
+.left{
+  height: 100%;
+  border: 2px solid red;
+}
+
+.right-frame{
+  height: 100%;
+  border: 2px solid red;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Cells inside columns */
+.cell{ padding: 8px; }
+.cell2{ padding: 6px; }
+
+.box{
+  width: 100%;
+  height: 100%;
+  border: 2px solid red;
+}
+
+.h-top{ height: 70px; }
+.h-small{ height: 35px; }
+.h-midBig{ height: 90px; }
+.h-bottom{ height: 70px; }
+
+/* Preserve explicit stacking where the original used a "clear" element to force line breaks */
+.clear{ flex-basis: 100%; height: 0; }
+
+/* Special-case: when a column itself contains stacked children (e.g., .col-4 with two .col-12 children), make it a column flex container */
+.col-4{
+  display: flex;
+  flex-direction: column;
+}
+
+.col-4 > .col-12{ flex: 0 0 50%; }
+
+/* Small helpers for consistent alignment */
+.right-frame > .col-3,
+.right-frame > .col-4,
+.right-frame > .col-8,
+.right-frame > .col-12{
+  display: block;
+}
+
+/* Mobile: stack everything vertically below 750px */
+@media (max-width: 750px){
+  .page{
+    flex-direction: column;
+    height: auto;
+  }
+
+  .col-1,
+  .col-11{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .right-frame{
+    padding: 10px 0;
+  }
+
+  .right-frame .col-3,
+  .right-frame .col-4,
+  .right-frame .col-8,
+  .right-frame .col-12{
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* On small screens, give the height classes a consistent mobile-friendly height */
+  .right-frame .h-top,
+  .right-frame .h-small,
+  .right-frame .h-midBig,
+  .right-frame .h-bottom{
+    height: 70px;
+  }
+
+  .cell{ padding: 10px 0; }
+  .cell2{ padding: 10px 0; }
+
+  .right-frame .clear{ flex-basis: 100%; }
+}
