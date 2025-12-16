@@ -26,5 +26,5 @@ All nested columns within the right frame (.col-3, .col-4, .col-8) also switch t
 
 All content boxes maintain a consistent minimum height of 70px for a uniform mobile look.
 
-link for the project: (https://idostainberg.github.io/HW2/index.html)
+link for the project: https://idostainberg.github.io/HW2/index.html
 
