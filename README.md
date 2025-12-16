@@ -24,5 +24,7 @@ The left column (.col-1) and the right frame (.col-11) switch to full width (100
 
 All nested columns within the right frame (.col-3, .col-4, .col-8) also switch to full width (100%) and stack vertically.
 
-All content boxes maintain a consistent minimum height of 70px for a uniform mobile look
+All content boxes maintain a consistent minimum height of 70px for a uniform mobile look.
+
+link for the project:
 
